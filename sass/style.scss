@@ -1,0 +1,393 @@
+$grey:#eee;
+@mixin round {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-size: cover;
+    cursor: pointer;
+}
+@mixin centerFlex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+@mixin scroll {
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(136, 136, 136, 0.479); 
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(85, 85, 85, 0.507); 
+    }
+}
+@mixin borderCurve {
+    border-radius: 5px;
+}
+@mixin trans {
+    transition: 0.3s;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    list-style-type: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    @include scroll;
+    outline: none;
+}
+@mixin msgAlign {
+    display: inline-block;
+    @include borderCurve;
+    text-align: left;
+    min-width: 110px;
+    font-size: 11pt;
+}
+@mixin dropdown {
+    position: fixed;
+    width: 120px;
+    height: 235px;
+    left: 23%;
+    top: 13%;
+    z-index: 100;
+    background: #fff;
+    @include borderCurve;
+    box-shadow: .1px .1px 5px;
+    visibility: hidden;
+    opacity: 0;
+    &:hover{
+        visibility: visible;
+    }
+}
+button{
+    background:transparent;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.name{
+    font-size: 14pt;
+}
+span{
+    font-size: 10pt;
+    color: #777;
+}
+.friday{
+    font-size: 10pt;
+    margin-bottom: 23px;
+    width: 58px;
+    color: #999;
+    text-align: right;
+    
+}
+i{
+    position: relative;
+    color: #999;
+    padding-top: 10px;
+    visibility: hidden;
+}
+.dropdown{
+    @include dropdown;
+    ul{
+        display: flex;
+        flex-direction: column;
+        z-index: 120;
+        li{
+            padding: 10px;
+            font-size: 12pt;
+            &:hover{
+                background: rgb(228, 228, 228);
+            }
+        }
+    }
+}
+.top{
+    position: fixed;
+    width: 100%;
+    background: $grey;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows:repeat(1,60px);
+    box-shadow: 0px 0.3px 1.5px;
+    z-index: 120;
+    .topLeft{
+        box-shadow: 0.3px -1px 1.5px;
+        @include centerFlex;
+        padding: 0 20px;
+        .round{
+            background: url("../images/dp.jpg");
+            @include round;
+        }
+        .icons:last-child{
+            &:hover{
+                .dropdown{
+                    @include trans;
+                    visibility: visible;
+                    opacity: 1;
+                    top: 7%;
+                }
+            }
+        }
+    }
+    .topRight{
+        @include centerFlex;
+        padding: 0 20px;
+        .round{
+            background: url("../images/dp2.jpg");
+            @include round;
+        }
+        .name{
+            width: 73%;
+        }
+    }
+}
+
+.search{
+    position: fixed;
+    width: 33.4%;
+    top: 10%;
+    height: 49px;
+    background: #f8f8f8;
+    @include centerFlex;
+    box-shadow: .4px .4px .5px;
+    input{
+        width: 100%;
+        height: 30px;
+        margin: auto 20px;
+        padding-left:30px;
+        @include borderCurve;
+        border: 0.5px solid rgba(128, 128, 128, 0.212); 
+    }
+}
+
+.chatPanel{
+    position: fixed;
+    overflow: auto;
+    top: 18.1%;
+    width: 33.4%;
+    height: 505px;
+    box-shadow: .5px 1px .5px;
+    z-index: 1;
+    .chat{
+        @include centerFlex;
+        justify-content: flex-start;
+        height: 72px;
+        padding: 0px 12px;
+        cursor: pointer;
+        .dropdown{
+            @include dropdown;
+            top: 33%;
+
+            width:150px;
+            height: 180px;
+            z-index: 100;
+            background: #fff;
+        }
+        &:hover{
+            @include trans;
+            background: $grey;
+            i{
+                @include trans;
+                visibility: visible;
+                left: -6%;
+            }
+                    .dropdown{
+                        @include trans;
+                        visibility: visible;
+                        opacity: 1;
+                        top: 25%;
+                        left: 30%;
+                    }
+                
+        }
+        .round{
+            background: url("../images/dp2.jpg");
+            @include round;
+            height: 50px;
+            width: 50px;
+        }
+        .name{
+            margin: 0 10px;
+            width: 260px;
+            span{
+                font-size: 11pt;
+            }
+        }
+    }
+}
+
+.bottonGrid{
+    position: fixed;
+    bottom: 0%;
+    right: 0.01%;
+    min-height: 39px;
+    max-height: 142px;
+    background: $grey;
+    @include centerFlex;
+    width: 66.58%;
+    padding: 10px 0px;
+    input{
+        width: 100%;
+        height: 30px;
+        @include borderCurve;
+        padding: 10px;
+        overflow: scroll;
+    }
+    .msg{
+        width:100%;
+        min-height: 20px;
+        max-height: auto;
+        padding: 7px 0px;
+        background: white;
+        overflow-x: hidden;
+        overflow-y: auto;
+        @include borderCurve;
+        .text{
+            align-items: center;
+            font-size: 15px;
+            max-height: 120px;
+            min-height: 20px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            z-index: 1;
+            width: 98%;
+            background: white;
+            padding: 5px 10px;
+        }
+    }
+}
+.imgMsg{
+    &:hover{
+       .round i{
+        transition: .3s;
+        visibility: visible;
+        left:-52px;
+        opacity: 1;
+        }
+    }
+    .round{
+        i{
+            display: block;
+            top: -140px;
+            opacity: 0;   
+        }
+        }
+    }
+    .image{
+        border: 3px solid white;
+        display: block;
+        width: 40%;
+        height: 50%;
+        float: left;
+        margin: 1% 0px;
+        @include borderCurve;
+}
+.main{
+    padding: 1% 2%;
+    position: fixed;
+    top: 9.9%;
+    left: 33.4%;
+    background: url("../images/bk.png");
+    background-size: contain;
+    height: 80.5%;
+    width: 62.6%;
+    overflow: scroll;
+    .round{
+        background-color: rgba(0, 0, 0,.4);
+        @include round;
+        width: 30px;
+        height: 30px;
+        float: left;
+        margin-top: 115px;
+        margin-left: 20px;
+        padding-left: 5px;
+        padding-top: 5px;
+
+    }
+    .msgTime{
+        text-align: center;
+        font-size: 10pt;
+        p{
+            display: inline-block;
+            background: rgb(145, 224, 255);
+            padding: 5px;
+            @include borderCurve;
+        }
+    }
+    .msgR{
+        width: 60%;
+        clear: both;
+        .msgback{
+            background: #f1f1f1;
+            min-width: 110px;
+            max-width: fit-content;
+            padding: 5px;
+            @include borderCurve;
+            margin: 1.5% 0px;
+            .angle{
+                position: relative;
+                margin-left: -12px;
+                margin-top: -5px;
+                width: 0;
+                height: 0;
+                border-top: 18px solid #f1f1f1;
+                border-top-left-radius: 2px;
+                border-left: 12px solid transparent;
+            }
+            span{
+                position: relative;
+                text-align: right;
+                font-size: 8pt;
+                display: block;
+                margin-top: -7px;
+            }
+            .msgtxt{
+                font-size: 11pt;                
+            }
+        }
+    }
+    .msgL{
+        text-align: right;
+        clear: both;
+        .angle{
+            position: relative;
+            float: right;
+            right: -8;   
+            margin-left: -12px;
+            margin-top: 7.8px;
+            width: 0;
+            height: 0;
+            border-top: 18px solid rgb(203, 255, 134);;
+            border-top-right-radius: 2px;
+            border-right: 12px solid transparent;
+            margin-bottom: -40px;
+        }
+        .msgback{
+            float: right;
+            text-align: left;
+            background: rgb(203, 255, 134);
+            min-width: 110px;
+            @include borderCurve;
+            max-width: fit-content;
+            padding: 5px;
+            margin: 1% 0% 1% 40% ;
+
+            span{
+                position: relative;
+                text-align: right;
+                font-size: 8pt;
+                display: block;
+                margin-top: -7px;
+            }
+            .msgtxt{
+                font-size: 11pt;
+            }
+        }
+    }
+}
